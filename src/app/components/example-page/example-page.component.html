@@ -1,0 +1,26 @@
+
+
+
+<div class="container">
+    <div class="row">
+        <h2>Table</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Total Time In Hours</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let emp of employees">
+                    <tr [ngClass]="{'table-secondary': emp.timeWorked < 100}">
+                        <td>{{emp.employeeName}}</td>
+                        <td>{{emp.timeWorked}}</td>
+                        <td><a href="#">Edit</a></td>
+                    </tr>
+                </ng-container>              
+            </tbody>
+          </table>
+    </div>
+</div>
