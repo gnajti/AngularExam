@@ -5,19 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExamplePageComponent } from './components/example-page/example-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ChartComponent } from './components/chart/chart.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExamplePageComponent
+    ExamplePageComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,3 +24,15 @@
           </table>
     </div>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <ng-container *ngIf="employeesHours != undefined && employeesNames != undefined">
+        <app-chart [chartLabels]="employeesNames" [chartValues]="employeesHours" [width]="500" type="pie" titl="Pie Chart"></app-chart>
+      </ng-container>
+      
+    </div>
+    
+  </div>
+</div>

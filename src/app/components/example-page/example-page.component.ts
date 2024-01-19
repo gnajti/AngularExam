@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../interfaces/employee';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -9,11 +8,15 @@ import { Observable } from 'rxjs';
   templateUrl: './example-page.component.html',
   styleUrl: './example-page.component.css'
 })
+
 export class ExamplePageComponent {
 
     employees: Array<Employee> = new Array<Employee>() 
-    constructor(private employeeService:EmployeeService){
+    employeesNames: string[]
+    employeesHours: number[]
 
+    constructor(private employeeService:EmployeeService){
+  
     }
 
     ngOnInit(): void {
@@ -22,9 +25,9 @@ export class ExamplePageComponent {
           data.forEach((element: Employee) => {
             let existingEmployee = this.employees.find((f: Employee) => f.employeeName === element.employeeName);
 
-            if (existingEmployee) {
+            if(existingEmployee){
                 existingEmployee.timeWorked += element.timeWorked;
-            } else {
+            }else{
                 this.employees.push({
                     id: element.id,
                     employeeName: element.employeeName,
@@ -35,15 +38,19 @@ export class ExamplePageComponent {
             }
             
           });
-
+          let nullUser = this.employees.find((f: Employee) => f.employeeName == null)
+          if(nullUser){
+            nullUser.employeeName = "No name";
+          }
+          
           this.employees = this.employees.sort((a,b)=> b.timeWorked - a.timeWorked);
+          this.employeesNames = this.employees.map((emp:Employee)=> emp.employeeName);
+          this.employeesHours = this.employees.map((emp:Employee)=> emp.timeWorked);
         },
         error: (error: any) => console.log(error)
       })
       
     }
     ngAfterViewInit(): void {
-      
-      
     }
 }
